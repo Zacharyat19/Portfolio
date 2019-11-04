@@ -1,11 +1,23 @@
 def main():
 	user_input = int(input("Which function would you like to use:\n1) 10x^2\n2) 2x^2 - 5\n3) x + 20\n"))
 	if(user_input == 1):
-		sum_1()
+		user_input = int(input("1) Summation\n2) Integration \n"))
+		if(user_input == 1):
+			sum_1()
+		elif(user_input == 2):
+			integration1()
 	elif(user_input == 2):
-		sum_2()
+		user_input = int(input("1) Summation\n2) Integration \n"))
+		if(user_input == 1):
+			sum_2()
+		elif(user_input == 2):
+			integration2()
 	elif(user_input == 3):
-		sum_3()
+		user_input = int(input("1) Summation\n2) Integration \n"))
+		if(user_input == 1):
+			sum_3()
+		elif(user_input == 2):
+			integration3()
 
 def sum_1():
 	#ask for upper and lower limits
@@ -58,20 +70,103 @@ def sum_3():
 
 	print("The sum is", counter)
 
+#Start integral section
 def f(x):
     return 10*(x**2)
 
-def integration_1():
-    a = int(input("What is the starting interval: \n"))
-    b = int(input("What is the ending interval: \n"))
-    n = int(input("How many rectangles: \n"))
+def f2(x):
+	return (2*(x**2)) - 5
 
-    area = 0
-    width = (b-a)/n
-    height = 
-    for i in range(n):
-        are += width * f(x)
-        x += width
-    print("Area: ", area)
+def f3(x):
+	return x + 20
 
-main()	
+def integration1():
+	choice = int(input("1) Rectangle \n2) Trapezoid\n"))
+
+	if(choice == 1):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * f(x)
+			x += width
+		print("Area: ", area)
+	elif(choice == 2):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * ((f(x) + f(x + width))/2)
+			x += width
+		print("Area: ", area)
+
+def integration2():
+	choice = int(input("1) Rectangle \n2) Trapezoid\n"))
+
+	if(choice == 1):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * f2(x)
+			x += width
+		print("Area: ", area)
+	elif(choice == 2):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * ((f2(x) + f2(x + width))/2)
+			x += width
+		print("Area: ", area)
+
+def integration3():
+	choice = int(input("1) Rectangle \n2) Trapezoid\n"))
+
+	if(choice == 1):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * f3(x)
+			x += width
+		print("Area: ", area)
+	elif(choice == 2):
+		n = int(input("How many rectangles: "))
+		a = int(input("Enter a: "))
+		b = int(input("Enter b: "))
+
+		area = 0
+		x = a 
+		width = (b-a)/n
+
+		for i in range(n):
+			area += width * ((f3(x) + f3(x + width))/2)
+			x += width
+		print("Area: ", area)
+main()
