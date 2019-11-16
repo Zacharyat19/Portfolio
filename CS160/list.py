@@ -1,33 +1,50 @@
 def main():
     names = []
-    user_input = int(input("How many names would you like to enter: "))
+    try:
+        user_input = int(input("How many names would you like to enter: "))
+        if(user_input < 1):
+            print("invalid input")
+            main()
 
-    counter = 0
-    while(counter < user_input):
-        name = input("Enter a name: ")
-        names.append(name)
-        counter += 1
+        counter = 0
+        while(counter < user_input):
+            name = input("Enter a name: ")
+            names.append(name)
+            counter += 1
+    except ValueError:
+        print("Invalid input")
 
     num1 = []
     num2 = []
+    try:
+        user_input = int(input("How many numbers would you like in the first list: "))
+        if(user_input < 1):
+            print("invalid input")
+            main()
 
-    user_input = int(input("How many numbers would you like in the first list: "))
+        counter = 0
+        while(counter < user_input):
+            num = int(input("Enter numbers: "))
+            num1.append(num)
+            counter += 1
+    except ValueError:
+        print("Invalid input")
 
-    counter = 0
-    while(counter < user_input):
-        num = int(input("Enter numbers: "))
-        num1.append(num)
-        counter += 1
+    try:
+        user_input = int(input("How many numbers would you like in the second list: "))
+        if(user_input < 1):
+            print("invalid input")
+            main()
 
-    user_input = int(input("How many numbers would you like in the second list: "))
+        counter = 0
+        while(counter < user_input):
+            num = int(input("Enter numbers: "))
+            num2.append(num)
+            counter += 1
+    except ValueError:
+        print("Invalid input")
 
-    counter = 0
-    while(counter < user_input):
-        num = int(input("Enter numbers: "))
-        num2.append(num)
-        counter += 1
-
-    print("Common letters: ", same_letters(names))
+    print("Occurence of each letter: ", same_letters(names))
     print("Same length: ", same_length(num1,num2))
     print("The sum of the first list is: ", sum(num1))
     print("The average of the second list is: ", average(num2))
@@ -35,15 +52,15 @@ def main():
     print("Common numbers: ", common_num(num1,num2))
 
 def same_letters(names):
-    common = []
+    temp = []
 
-    for i in set(names):
-        for j in set(i):
-            if(i == j):
-                common.append(i)
+    for i in names:
+        for j in i:
+            temp.append(j)
 
-    return common
-    
+    return [[x,temp.count(x)] for x in set(temp)]
+
+
 #return true if lists are the same length
 def same_length(num_list, num2_list):
     length1 = len(num_list)
