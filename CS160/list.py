@@ -51,6 +51,7 @@ def main():
     print("Different sum: ", sum_2(num1, num2))
     print("Common numbers: ", common_num(num1,num2))
 
+#returns occurance of each letter
 def same_letters(names):
     temp = []
 
@@ -89,7 +90,7 @@ def average(num2_list):
 
     return (x/len(num2_list))
 
-#returns true if the average of one list is different from the other
+#returns true if the sum of one list is different from the other
 def sum_2(num_list, num2_list):
     x = 0
     y = 0
@@ -99,9 +100,6 @@ def sum_2(num_list, num2_list):
 
     for j in num2_list:
         y += j
-    
-    x = x/len(num_list)
-    y = y/len(num2_list)
 
     if((x > y) or (x < y)):
         return True
