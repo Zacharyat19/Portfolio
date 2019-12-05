@@ -24,4 +24,5 @@ def main():
         counter += 1
 
     print("The numbers were: ", numbers)
+    
 main()

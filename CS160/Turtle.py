@@ -196,5 +196,4 @@ def draw_T():
   turtle.right(180)
   turtle.penup()
 
-
 main()

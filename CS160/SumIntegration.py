@@ -169,4 +169,5 @@ def integration3():
 			area += width * ((f3(x) + f3(x + width))/2)
 			x += width
 		print("Area: ", area)
+
 main()

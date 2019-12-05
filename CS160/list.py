@@ -110,4 +110,5 @@ def sum_2(num_list, num2_list):
 def common_num(num_list, num2_list):
     return list(set(num_list) & set(num2_list))
 
+
 main()

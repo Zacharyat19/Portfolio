@@ -193,5 +193,4 @@ def animate1D(all_values, wire_length, wire_divisions, temp_min = 0, temp_max = 
     plt.close()
 
 
-
 main()

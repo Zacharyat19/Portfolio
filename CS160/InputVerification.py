@@ -18,7 +18,6 @@ def is_int(num):
         else:
             return False
 
-
 def is_floating_pt(num):
     x = -1
     for i in num:
