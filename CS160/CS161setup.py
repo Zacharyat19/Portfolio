@@ -28,4 +28,6 @@ def main():
         x += i
     x = math.sqrt(x)
     print("The squre root of the sum is: ", x)
+    print(z[4])
+    
 main()
