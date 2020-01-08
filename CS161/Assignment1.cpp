@@ -51,6 +51,8 @@ int main() {
     std::cout << "What state do you live in (A,B,C): ";
     std::cin >> state;
 
+    std::cout.flush();
+
     //Annual Salary
     int annualSalary = monthlySalary * monthsWorked;
 
@@ -70,68 +72,55 @@ int main() {
     //Calculate gross income
     double grossIncome = annualSalary + (0.02 * profit) - deductions;
 
-    std::cout << "Your gross income is ", grossIncome;
-
-    return 0;
-}
-
-
-/**************************************************************************************
- ** Function: taxes.
- ** Description: Calculates taxes for 2017 or 2018.
- ** Parameters: state, year
- ** Pre-Conditions: state is a char and year is an int.
- ** Post-Conditions: taxes outputs a value for the taxes owed.
- ***************************************************************************************/
-
-int taxes(char state, int year, double income) {
-    double taxes;
-
-    if(year == 2017) {
+    if(taxYear == 2017) {
         if(state == 'A' || state == 'a') {
-            std::cout << "Your total taxes are: ", (0.06 * income); 
+            std::cout << "Your total taxes are " << (0.06 * grossIncome) << "$" << std::endl; 
         } else if(state == 'B' || state == 'b') {
-            if(income < 2000) {
-                taxes = 0;
-            } else if(income >= 2000 && income <= 10000) {
-                taxes = 100;
-            } else if(income > 100000) {
-                taxes = (0.1 * (income - 10000)) + 100;
+            if(grossIncome < 2000) {
+                std::cout << "Your taxes are " << 0 << "$" << std::endl;
+            } else if(grossIncome >= 2000 && grossIncome <= 10000) {
+                std::cout << "Your taxes are " << 100 << "$" << std::endl;
+            } else if(grossIncome > 100000) {
+                std::cout << "Your taxes are " << (0.1 * (grossIncome - 10000)) + 100 << "$" << std::endl;
             }
         } else if(state == 'C' || state == 'c') {
-            if(income < 3500) {
-                taxes = 0.05 * income;
-            } else if(income >= 3500 && income <= 9000) {
-                taxes = (0.07 * (income - 3500)) + 175;
-            } else if(income > 9000 && income <= 125000) {
-                taxes = (0.09 * (income - 9000)) + 560;
-            } else if(income > 125000) {
-                taxes = (0.099 * (income - 125000)) + 11000;
+            if(grossIncome < 3500) {
+                std::cout << "Your taxes are " << 0.05 * grossIncome << "$" << std::endl;
+            } else if(grossIncome >= 3500 && grossIncome <= 9000) {
+                std::cout << "Your taxes are " << (0.07 * (grossIncome - 3500)) + 175 << "$" << std::endl;
+            } else if(grossIncome > 9000 && grossIncome <= 125000) {
+                std::cout << "Your taxes are "  << (0.09 * (grossIncome - 9000)) + 560 << "$" << std::endl;
+            } else if(grossIncome > 125000) {
+                std::cout << "Your taxes are " << (0.099 * (grossIncome - 125000)) + 11000 << "$" << std::endl;
             }
         }
-    } else if(year == 2018) {
+    } else if(taxYear == 2018) {
         if(state == 'A' || state == 'a') {
-            if(income < 2500) {
-                taxes = (0.08 * income);
+            if(grossIncome < 2500) {
+                std::cout << "Your taxes are " << (0.08 * grossIncome) << "$" << std::endl;
             }
         } else if(state == 'B' || state == 'b') {
-            if(income < 2500) {
-                taxes = 0;
-            } else if(income >= 2500 && income <= 10000) {
-                taxes = 115;
-            } else if(income > 10000) {
-                taxes = (0.105 * (income - 10000)) + 115;
+            if(grossIncome < 2500) {
+                std::cout << "Your taxes are " << 0 << "$" << std::endl;
+            } else if(grossIncome >= 2500 && grossIncome <= 10000) {
+                std::cout << "Your taxes are " << 115 << "$" << std::endl;
+            } else if(grossIncome > 10000) {
+                std::cout << "Your taxes are " <<  (0.105 * (grossIncome - 10000)) + 115 << "$" << std::endl;
             }
         } else if(state == 'C' || state == 'c') {
-            if(income < 3450) {
-                taxes = 0.05 * income;
-            } else if(income >= 3450 && income <= 8700) {
-                taxes = (0.07 * (income - 3450)) + 172.5;
-            } else if(income > 8700 && income <= 125000) {
-                taxes = (0.09 * (income - 8700)) + 540;
-            } else if(income > 125000) {
-                taxes = (0.099 * (income - 12500)) + 11007;
+            if(grossIncome < 3450) {
+                std::cout << "Your taxes are " << 0.05 * grossIncome << "$" << std::endl;
+            } else if(grossIncome >= 3450 && grossIncome <= 8700) {
+                std::cout << "Your taxes are " << (0.07 * (grossIncome - 3450)) + 172.5 << "$" << std::endl;
+            } else if(grossIncome > 8700 && grossIncome <= 125000) {
+                std::cout << "Your taxes are " << (0.09 * (grossIncome - 8700)) + 540 << "$" << std::endl;
+            } else if(grossIncome > 125000) {
+                std::cout << "Your taxes are " << (0.099 * (grossIncome - 12500)) + 11007 << "$" << std::endl;
             }
         }
     }
+
+    std::cout << "Your gross income is "<< grossIncome << "$" << std::endl;
+
+    return 0;
 }
