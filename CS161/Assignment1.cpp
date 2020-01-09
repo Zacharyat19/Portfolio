@@ -17,11 +17,11 @@
  ** Description: Main function that calculates gross income.
  ** Parameters: none.
  ** Pre-Conditions: All inputs are appropriate types.
- ** Post-Conditions: 
+ ** Post-Conditions: main outputs taxes and gross income.
  ***************************************************************************************/
 
 int main() {
-    //Declare variables
+    //Declare variables and get input
     int monthlySalary;
     int monthsWorked;
     int costCar;
@@ -71,6 +71,7 @@ int main() {
 
     //Calculate gross income
     double grossIncome = annualSalary + (0.02 * profit) - deductions;
+    std::cout << "Your gross income is "<< grossIncome << "$" << std::endl;
 
     if(taxYear == 2017) {
         if(state == 'A' || state == 'a') {
@@ -119,8 +120,5 @@ int main() {
             }
         }
     }
-
-    std::cout << "Your gross income is "<< grossIncome << "$" << std::endl;
-
     return 0;
 }
