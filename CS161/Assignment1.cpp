@@ -73,6 +73,7 @@ int main() {
     double grossIncome = annualSalary + (0.02 * profit) - deductions;
     std::cout << "Your gross income is "<< grossIncome << "$" << std::endl;
 
+    //Calculate taxes
     if(taxYear == 2017) {
         if(state == 'A' || state == 'a') {
             std::cout << "Your total taxes are " << (0.06 * grossIncome) << "$" << std::endl; 

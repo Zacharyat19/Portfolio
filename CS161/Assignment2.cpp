@@ -151,6 +151,19 @@ bool lettersPresent(std::string sentence) {
 
 
 /**************************************************************************
+ * * Function: containsSubString
+ * * Description: checks if a substring exists in a string
+ * * Parameters: sentence, substring
+ * * Pre-Conditions: sentence is a string, substring is a string 
+ * * Post-Conditions: returns true if substring is in sentence
+ * ************************************************************************/
+bool containsSubString(std::string sentence, std::string subString) {
+    for(int i = 0; i < sentence.length(); i++) {
+        
+    }
+}
+
+/**************************************************************************
  * * Function: main
  * * Description: outputs results of all functions
  * * Parameters: none
