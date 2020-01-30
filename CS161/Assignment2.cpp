@@ -25,7 +25,7 @@ bool checkRange(int lowerBound, int upperBound,int testValue) {
  * * Post-Conditions: outputs true if letter is a capital
  * ************************************************************************/
 bool isCapital(char letter) {
-    if(isupper(letter)) {
+    if(letter >= 'A' || letter <= 'Z') {
         return true;
     }
     return false;
@@ -158,11 +158,120 @@ bool lettersPresent(std::string sentence) {
  * * Post-Conditions: returns true if substring is in sentence
  * ************************************************************************/
 bool containsSubString(std::string sentence, std::string subString) {
-    for(int i = 0; i < sentence.length(); i++) {
-        
+    int sentenceLength = sentence.length();
+    int subStringLength = subString.length();
+
+    if (sentenceLength < subStringLength) { 
+            return false;
+    } else {
+        for (int i = 0; i < sentenceLength; i++) {
+            int j = 0;
+            if(sentence[i] == subString[j]) {
+                int position = i;
+                for(int a = 0; a < subStringLength; a++) {
+                    if(sentence[i] == subString[j]) {
+
+                        j++;
+                        i++;
+                    }
+                }
+                if (j == subStringLength) {
+                    return true;
+                } else {
+                    i = position;
+                }
+            }
+        }
+        return false;
     }
 }
 
+
+/**************************************************************************
+ * * Function: wordCount
+ * * Description: returns the number of words in a string
+ * * Parameters: sentence
+ * * Pre-Conditions: sentence is a string
+ * * Post-Conditions: outputs an int representing the number of words
+ * ************************************************************************/
+int wordCount(std::string sentence) {
+    int count = 0;
+    for(int i = 0; i < sentence.length(); i++) {
+        if(sentence[i] == ' ') {
+            count++;
+        }
+    }
+    return count + 1;
+}
+
+
+/**************************************************************************
+ * * Function: toUpper
+ * * Description: returns a string in uppercase
+ * * Parameters: sentence
+ * * Pre-Conditions: sentence is a string
+ * * Post-Conditions: outputs a string in all uppercase
+ * ************************************************************************/
+std::string toUpper(std::string sentence) {
+    for(int i = 0; i < sentence.length(); i++) {
+        if(sentence[i] >= 'a' && sentence[i <= 'z']) {
+            sentence[i] = sentence[i] - 32;
+        }
+    }
+    return sentence;
+}
+
+
+/**************************************************************************
+ * * Function: toLower
+ * * Description: returns a sring in all lowercase
+ * * Parameters: sentence
+ * * Pre-Conditions: sentence is a string
+ * * Post-Conditions: outputs a string in all lowercase
+ * ************************************************************************/
+std::string toLower(std::string sentence){
+    for (int i = 0; i < sentence.length(); i++) {
+        if (sentence[i] >= 'A' && sentence[i] <= 'Z') {
+            sentence[i] = sentence[i] + 32;
+        }
+    }
+    return sentence;    
+}
+
+
+/**************************************************************************
+ * * Function: getInt
+ * * Description: Checks if input is a valid integer, returns the integer
+ * * Parameters: prompt
+ * * Pre-Conditions: prompt is a string
+ * * Post-Conditions: outputs the provided integer
+ * ************************************************************************/
+int getInt(std::string prompt) {
+    bool negative_prompt = false;
+    if (prompt[0] == '-') {
+        negative_prompt = true;
+        prompt[0] = '0';
+    }
+    
+    for (int i = 0; i < prompt.length(); i++) {
+        if (prompt[i] < '0' || prompt[i] > '9') {
+            std::cout << "Not a valid Integer.";
+            return false;
+        }
+    }
+
+    int sum = 0;
+    for(int i = 0; i < prompt.length(); i++) {
+        int int_from_char = (prompt[i]-48);
+        float pow_function = int_from_char * pow(10,prompt.length()-1-i);
+        sum += pow_function;
+    }
+   
+    if (negative_prompt) {
+        return (sum*-1);
+    }
+    return sum;
+}
 /**************************************************************************
  * * Function: main
  * * Description: outputs results of all functions
