@@ -1,3 +1,11 @@
+/**************************************************************************************
+ ** Program: Function library
+ ** Author: Zach Taylor.
+ ** Date: 2/1/2020
+ ** Description: A collection of common functions hard coded
+ ** Input: function calls
+ ** Output: bool, int, string
+ **************************************************************************************/
 #include <iostream>
 #include <cmath>
 #include <string>
