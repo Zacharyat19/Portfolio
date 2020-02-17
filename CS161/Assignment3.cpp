@@ -16,12 +16,15 @@ int main() {
     int numerator = 0;
     int denominator = 0;
     if(!toLowestTerms(numerator, denominator)) {
-        std::cout << "Denominator was 0. Please run again." << std::endl;
+        std::cout << "Invalid input. Please run again." << std::endl;
         return 0;
     }
 
-    std::cout << "The reduced fraction is " << numerator/gcd(numerator, denominator) << "/" << 
-            denominator/gcd(numerator, denominator) << std::endl;
+    int fraction = gcd(numerator,denominator);
+    numerator = numerator / fraction;
+    denominator = denominator / fraction;
+
+    std::cout << "The reduced fraction is " << numerator << "/" << denominator << std::endl;
     
 }
 
@@ -29,7 +32,7 @@ int main() {
 /***************************************************************************************
 ** Function: toLowestTerms()
 ** Description: Gets an input from the user and return false if the denominator is zero
-** Parameters: &numerator, &denominator
+** Parameters: int &numerator, int &denominator
 ** Pre-conditions: Both inputs are ints
 ** Post-conditions: Returns false if the denominator is zero
 ****************************************************************************************/
@@ -57,7 +60,7 @@ int gcd(int num1, int num2) {
     int smallest = 0;
     int gcd = 0;
     
-    (abs(num1) < abs(num2))? smallest = abs(num1) : smallest = abs(num2);
+    (std::abs(num1) < std::abs(num2))? smallest = std::abs(num1) : smallest = std::abs(num2);
 
     for (int i = 1; i <= smallest; i++){
         if ((num1 % i == 0) && (num2 % i == 0))
