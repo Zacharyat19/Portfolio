@@ -11,11 +11,12 @@
 #include <string>
 
 void vowelsVsConsonants(char *str);
-void letterSwap(char *str);
+char *letterSwap(char *str);
 char *flip(char *str);
 bool isPalindrome(char *str, char *str2);
 void wordFrequency(char *str);
 char *purge(char *str);
+int countInstances(char *str, char *str2);
 
 
 /*************************************
@@ -37,7 +38,7 @@ int main() {
     while(again) {
         char *str2 = purge(str);
 
-        std::cout << "\nWhat would you like top do:\n(1) Vowels vs Consonants.\n(2) Letter Swap.\n(3) Flip.\n(4) Palindrome.\n(5) Word Frequency.\n" << std::endl;
+        std::cout << "\nWhat would you like to do:\n(1) Vowels vs Consonants.\n(2) Letter Swap.\n(3) Flip.\n(4) Palindrome.\n(5) Word Frequency.\n" << std::endl;
         std::cin >> x;
 
         //if statement for function choices, memory managment and repeatability
@@ -47,8 +48,10 @@ int main() {
             std::cout << "Want to run again?\n1(yes)\n0(no)" << std::endl;
             std::cin >> again;
         } else if(x == 2) {
-            letterSwap(str);
+            char *temp = letterSwap(str);
+            std::cout << "\n" << temp << "\n" << std::endl;
             delete []str2;
+            delete []temp;
             std::cout << "Want to run again?\n1(yes)\n0(no)" << std::endl;
             std::cin >> again;
         } else if(x == 3) {
@@ -70,7 +73,7 @@ int main() {
             std::cout << "Want to run again?\n1(yes)\n0(no)" << std::endl;
             std::cin >> again;
         } else if(x == 5) {
-            wordFrequency(str2);
+            wordFrequency(str);
             delete []str2;
             std::cout << "Want to run again?\n1(yes)\n0(no)" << std::endl;
             std::cin >> again;
@@ -113,8 +116,10 @@ void vowelsVsConsonants(char *str) {
 ** Pre-conditions: str is a cstring
 ** Post-conditions: outputs cstring with swapped letters
 ***********************************************************************************************/
-void letterSwap(char *str) {
-    bool isCapital = false;
+char *letterSwap(char *str) {
+    char *temp = new char[1024];
+    strcpy(temp,str);
+
     char one = ' ';
     char two = ' ';
 
@@ -123,15 +128,15 @@ void letterSwap(char *str) {
     std::cout << "Enter the second letter: " << std::endl;
     std::cin >> two;
 
-    for(int i = 0; i < strlen(str) - 1; i++) {
-        if(str[i] == one && (str[i] >= 'A' && str[i] <= 'Z')) {
+    for(int i = 0; i < strlen(temp) - 1; i++) {
+        if(temp[i] == (one + 32)) {
             two += 32;
-            str[i] = two;
-        } else if(str[i] == one) {
-            str[i] = two;
+            temp[i] = two;
+        } else if(temp[i] == one) {
+            temp[i] = two;
         }
     }
-    std::cout << "\n" << str << "\n" << std::endl;
+    return temp;
 }
 
 
@@ -148,6 +153,7 @@ char *flip(char *str) {
     for(int i = 0; i < strlen(str); i++) {
         temp[i] = str[strlen(str) - 1 - i];
     }
+    temp[strlen(str)] = '\0';
     return temp;
 }
 
@@ -179,27 +185,85 @@ bool isPalindrome(char *str, char *str2) {
 }
 
 
-/*****************************************************************
-** Function: flip
-** Description: takse a cstring input and returns a fliped cstring
+/********************************************************************
+** Function: word frequency
+** Description: looks for the frequency of N words in a cstring input
 ** Parameters: char *str
-** Pre-conditions: str is cstring
-** Post-conditions: returns cstring
-******************************************************************/
-void wordFrequency(char *str) {
+** Pre-conditions: str is a cstring
+** Post-conditions: returns frequency of N words
+**********************************************************************/
+void wordFrequency(char *Ostr) {
+    //remove unwanted characters but keep spaces to identify words vs parts of words
+    char *temp = new char[1024];
+    strcpy(temp,Ostr);
+
+    for(int i = 0; i < strlen(temp); i++) {
+        if(!((temp[i] >= 'a' && temp[i] <= 'z') || (temp[i] >= 'A' && temp[i] <= 'Z') || (temp[i] == ' '))) {
+            memmove(&temp[i], &temp[i + 1], strlen(temp) - i);
+            i--;
+        }
+    }
+
+    //make all letters lowercase 
+    char *str = new char[strlen(temp) + 1];
+    str[0] = ' ';
+    for(int i = 1; i < strlen(temp) + 1; i++) {
+        if(temp[i - 1] >= 'A' && temp[i - 1] <= 'Z') {
+            str[i] = temp[i - 1] + 32;
+        } else {
+            str[i] = temp[i - 1];
+        }
+    }
+    str[strlen(Ostr) + 1] = '\0';
+
     int length = 0;
     std::cout << "How many words do you want to look for: " << std::endl;
     std::cin >> length;
+    std::cin.ignore();
+    std::cin.clear();
 
-    std::string *words = new std::string[length];
+    //create 2d array to hold cstrings
+    char **words = new char*[length];
 
-    std::string word = " ";
     std::cout << "Enter your words: " << std::endl;
-    for(int i = 0; i <= length; i++) {
-          std::getline(std::cin, words[i]);
+    //get cstrings from user and add them to **words
+    for(int i = 0; i < length; i++) {
+        char *word = new char[30];
+        std::cin.getline(word,30);
+        words[i] = word;
     }
+    for(int i = 0; i < length; i++) {
+        std::cout << words[i] << ": " << countInstances(str,words[i]) << std::endl;
+    }
+    //delete nested memory
+    for(int i = 0; i < length; i++) {
+        delete []words[i];
+    }
+    delete []temp;
+    delete []str;
+}
 
-    std::cout << words << std::endl;
+
+/******************************************************************************
+** Function: countInstances
+** Description: Gets two cstrings and returns how many times str2 appears in str
+** Parameters: char *str, cchar *str2
+** Pre-conditions: str and str2 are cstrings
+** Post-conditions: returns instancews of substring
+*******************************************************************************/
+int countInstances(char *str, char *str2) {
+    if(strlen(str) < strlen(str2)) {
+        return 0;
+    }
+    char *temp = strstr(str,str2);
+    if(temp == NULL) {
+        return 0;
+    }
+    if(!isalpha(*(temp - 1)) && !isalpha(*(temp + strlen(str2)))) {
+        return 1 + countInstances(temp + 1, str2);
+    } else {
+        return countInstances(temp + 1, str2);
+    }
 }
 
 
