@@ -17,6 +17,7 @@ bool isPalindrome(char *str, char *str2);
 void wordFrequency(char *str);
 char *purge(char *str);
 int countInstances(char *str, char *str2);
+char i_to_a(int decimal);
 
 
 /*************************************
@@ -117,7 +118,7 @@ void vowelsVsConsonants(char *str) {
 ** Post-conditions: outputs cstring with swapped letters
 ***********************************************************************************************/
 char *letterSwap(char *str) {
-    char *temp = new char[1024];
+    char *temp = new char[strlen(str)];
     strcpy(temp,str);
 
     char one = ' ';
@@ -128,14 +129,16 @@ char *letterSwap(char *str) {
     std::cout << "Enter the second letter: " << std::endl;
     std::cin >> two;
 
-    for(int i = 0; i < strlen(temp) - 1; i++) {
-        if(temp[i] == (one + 32)) {
-            two += 32;
+    for(int i = 0; i < strlen(temp); i++) {
+        if(temp[i] == i_to_a(one - 32)) {
+            two = i_to_a(two - 32);
             temp[i] = two;
+            two = i_to_a(two + 32);
         } else if(temp[i] == one) {
             temp[i] = two;
         }
     }
+    
     return temp;
 }
 
@@ -285,4 +288,18 @@ char *purge(char *str) {
         }
     }
     return temp;
+}
+
+
+/**************************************************************
+** Function: i_to_a
+** Description: turns a decimal value into a character value
+** Parameters: int decimal
+** Pre-Conditions: the input is an integer
+** Post-Conditions: returned the character which represents the
+decimal value
+***************************************************************/
+char i_to_a(int decimal) {
+    return static_cast<char>(decimal);
+
 }
