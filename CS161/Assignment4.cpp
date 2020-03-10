@@ -242,6 +242,7 @@ void wordFrequency(char *Ostr) {
     for(int i = 0; i < length; i++) {
         delete []words[i];
     }
+    delete []words;
     delete []temp;
     delete []str;
 }
