@@ -1,0 +1,4 @@
+I ran the program with gdb and when the seg fault appeared 
+I back traced through the program to find its origin.
+
+The bug was with assigning a value to a pointer that pointed to nothing
