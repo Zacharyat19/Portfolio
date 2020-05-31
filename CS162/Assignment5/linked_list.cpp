@@ -77,3 +77,7 @@ void Linked_List::sort_descending() {
 unsigned int Linked_List::count_prime() {
 
 }
+
+bool Linked_List::is_prime(int n) {
+    
+}
