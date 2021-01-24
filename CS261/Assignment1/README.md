@@ -1,30 +1,6 @@
 # Assignment 1
-**Due at 11:59pm on Monday, 10/19/2020** <br/>
-**Demo due by 11:59pm on Monday 11/2/2020**
 
-This assignment is intended to get you up and running with some of the tools we'll be using in this course and also to start programming in C.  It should be very straightforward.  It has a few parts, described below.
-
-## 1. Sign up for Piazza
-
-Use this link to sign up for CS 261 on Piazza using your ONID email address: https://piazza.com/oregonstate/fall2020/cs261
-
-We'll be using Piazza in this course for Q&A because it's geared towards students helping other students with the class.  Anyone can post or answer a question on Piazza, even anonymously, and the instructor and TAs can revise and endorse student answers, which means you can be confident in the quality of the response.
-
-You are *strongly encouraged* to post any class-related querstions to Piazza first instead of emailing the instructor or TAs.  You should also get in the habit of checking in to Piazza to answer other students' questions.  This will not only enable everyone to get help quickly, but it will also help you improve your understanding of the material, since teaching someone else is the best way to learn something.
-
-As an incentive to use Piazza, extra credit will be awarded to the most active Piazza participants at the end of the term.
-
-## 2. Familiarize yourself with Git and GitHub
-
-The other set of tools we'll be using quite a bit for this course is Git and GitHub.  You're already here looking at this assignment, so we know you've got at least some Git/GitHub skills.  However, if you're new to Git and GitHub, take a few minutes to play with Git-it, which is a desktop app that teaches you how to use Git and GitHub:
-
-https://github.com/jlord/git-it-electron#git-it-desktop-app
-
-We'll be using Git and GitHub heavily in this course, so it'll pay off to put in the time now to learn how to use them.
-
-Once you feel somewhat comfortable with Git and GitHub, clone this assignment repository from GitHub onto your development machine.
-
-## 3. Implement a dynamic array
+Implement a dynamic array
 
 In our assignments this term, we'll be building up a library of data structure implementations in C.  The first data structure we'll implement is a [dynamic array](https://en.wikipedia.org/wiki/Dynamic_array).  We'll then be able to use this dynamic array implementation as a building block for many of the other data structures we'll explore in this course.
 
@@ -50,7 +26,7 @@ The dynamic array functions you'll need to implement are outlined briefly below.
 
   * **`dynarray_set()`** - This function should update (i.e. overwrite) the value of an element at a specified index in a dynamic array.  Again, see the info below on using `void*` values.
 
-## 4. Implement a singly-linked list
+Implement a singly-linked list
 
 The second data structure you'll implement, and also one that we'll also be able to use as a building block for many of the other data structures we'll implement this term, is the [linked list](https://en.wikipedia.org/wiki/Linked_list).  Specifically, you'll implement a singly-linked list.
 
@@ -102,44 +78,3 @@ This will return 0 if `val` and `link->val` are equal and a non-zero value other
 It will be instructive here to look in `test.c` to see how functions are actually passed as pointers into `list_remove()` and `list_position()`.  You can also refer to these tutorials for more in function pointers in general:
   * https://www.cprogramming.com/tutorial/function-pointers.html
   * https://www.learn-c.org/en/Function_Pointers
-
-## Testing your work
-
-In addition to the skeleton code provided here, you are also provided with some application code in `test_dynarray.c` and `test_list.c` to help verify that your dynamic array and linked list implementations, respectively, are behaving the way you want them to.  In particular, the testing code calls the functions from `dynarray.c` and `list.c`, passing them appropriate arguments, and then prints the results.  You can use the provided `Makefile` to compile all of the code in the project together, and then you can run the testing code as follows:
-```
-make
-./test_dynarray
-./test_list
-```
-Example output of these two testing programs using correct implementations of the dynamic array and linked list is provided in the `example_output/` directory.
-
-In order to verify that your memory freeing functions work correctly, it will be helpful to run the testing application through `valgrind`.
-
-## Submission
-
-We'll be using GitHub Classroom for this assignment, and you will submit your assignment via GitHub. Just make sure your completed files are committed and pushed by the assignment's deadline to the master branch of the GitHub repo that was created for you by GitHub Classroom. A good way to check whether your files are safely submitted is to look at the master branch of your assignment repo on the github.com website (i.e. https://github.com/osu-cs261-f20/assignment-1-YourGitHubUsername/). If your changes show up there, you can consider your files submitted.
-
-## Grading criteria
-
-Your program **MUST** compile and run on `flip.engr.oregonstate.edu`, so make sure you have tested your work there before you make your final submission, since a program that compiles and runs in one environment may not compile and run in another.  **Assignments that do not compile on `flip` may receive a grade of 0.**  If you do not have an ENGR account, you can create one at https://teach.engr.oregonstate.edu/.
-
-The assignment is worth 100 total points, broken down as follows:
-
-  * 20 points: Signed up for Piazza
-
-  * 40 points: Correct dynamic array implementation
-    * 5 points: `dynarray_create()` correctly allocates and initializes a dynamic array
-    * 5 points: `dynarray_free()` correctly frees the memory allocated to a dynamic array
-    * 5 points: `dynarray_size()` returns the correct size of a dynamic array
-    * 10 points: `dynarray_insert()` correctly inserts a value into a dynamic array, resizing the array when appropriate
-    * 5 points: `dynarray_remove()` correctly removes a value from a dynamic array
-    * 5 points: `dynarray_get()` correctly returns a value from a dynamic array
-    * 5 points: `dynarray_set()` correctly updates a value in a dynamic array
-
-  * 40 points: Correct linked list implementation
-    * 5 points: `list_create()` correctly allocates and initializes a linked list
-    * 5 points: `list_free()` correctly frees the memory allocated to a linked list
-    * 5 points: `list_insert()` correctly inserts a value into a linked list
-    * 10 points: `list_remove()` correctly removes a value from a linked list
-    * 5 points: `list_position()` correctly returns the position of an element in a linked list
-    * 10 points: `list_reverse()` correctly reverses the order of the links in a linked list

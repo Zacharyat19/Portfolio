@@ -1,7 +1,4 @@
 # Assignment 2
-**Due at 11:59pm on Monday, 11/2/2020**
-
-**Demo due by 11:59pm on Monday 11/16/2020**
 
 This assignment is intended to have you start working with stacks and queues and to start building ADTs on top of other data structures.  There are a couple parts to the assignment, each described below.
 
@@ -62,57 +59,3 @@ The queue functions you'll need to implement are outlined briefly below.  All of
 Importantly, the queue you build **MUST** use a dynamic array as its underlying data storage.  You are provided with a dynamic array implementation in `dynarray.h` and `dynarray.c` that you may use for this purpose.  Feel free to modify this dynamic array implementation as needed to implement your queue, *with the constraint that you may only interact with the dynamic array implementation via its interface functions.*  In particular, you may not directly access or modify the fields of the dynamic array structure (`struct dynarray`).  In other words, you may not change the fact that `dynarray.h` only contains a forward declaration of `struct dynarray`, and you may not redefine the dynamic array structure in `queue.h` or `queue.c`.
 
 Also, note that, as with the data structures you implemented in assignment 1, values in the queue will be stored as void pointers.
-
-## Extra credit: use two stacks to implement a queue
-
-For up to 10 points of extra credit, you can implement a data structure that uses two instances of your stack data structure to implement a queue.  In other words, you should implement a queue that uses two stacks to form the underlying container in which data is stored (instead of, for example, a dynamic array or a linked list).  For example, when the user calls `enqueue()` on your queue-from-stacks data structure, it will add the newly-enqueued element into one of the two stacks, as appropriate, and when the user calls `dequeue()`, your queue-from-stacks will remove the appropriate element from one of the two stacks.  To the user of your queue-from-stacks, it will behave just like a normal queue.
-
-> Hint: to implement a queue using two stacks, it might help to think of one stack as an "inbox" and one stack as an "outbox".
-
-The interface of your queue-from-stacks is defined in `queue_from_stacks.h`, and you must complete each of the functions implementing the queue-from-stacks in `queue_from_stacks.c`.  Each of the functions in `queue_from_stacks.c` has a function header comment that describes more precisely how it should behave.
-
-To be able to earn this extra credit, your stack implementation above must be working correctly, and importantly, you may only use the functions from your stack implementation prototyped in `stack.h` to interface with your two stacks.  You may not access the underlying stack data directly.  Also, make sure your queue-from-stacks implementation does not have any memory leaks!  Note that there are no runtime requirements for the queue-from-stacks functions.  In other words, you can still earn the full extra credit even if your enqueue and/or dequeue operation is O(n).
-
-To test your queue-from-stacks implementation, a testing application `test_queue_from_stacks.c` is provided.  This application will be compiled automatically using the provided makefile.  You can run it like so: `./test_queue_from_stacks`.
-
-## Testing your work
-
-In addition to the skeleton code provided here, you are also provided with some application code in `test_stack.c` and `test_queue.c` to help verify that your stack and queue implementations, respectively, are behaving the way you want them to.  In particular, the testing code calls the functions from `stack.c` and `queue.c`, passing them appropriate arguments, and then prints the results.  You can use the provided `Makefile` to compile all of the code in the project together, and then you can run the testing code as follows:
-```
-make
-./test_stack
-./test_queue
-```
-Example output of these two testing programs using correct implementations of the stack and queue is provided in the `example_output/` directory.
-
-In order to verify that your memory freeing functions work correctly, it will be helpful to run the testing applications through `valgrind`.
-
-## Submission
-
-We'll be using GitHub Classroom for this assignment, and you will submit your assignment via GitHub. Just make sure your completed files are committed and pushed by the assignment's deadline to the master branch of the GitHub repo that was created for you by GitHub Classroom. A good way to check whether your files are safely submitted is to look at the master/main branch of your assignment repo on the github.com website (i.e. https://github.com/osu-cs261-f20/assignment-2-YourGitHubUsername/). If your changes show up there, you can consider your files submitted.
-
-## Grading criteria
-
-Your program **MUST** compile and run on `access.engr.oregonstate.edu` (or `flip`), so make sure you have tested your work there before you make your final submission, since a program that compiles and runs in one environment may not compile and run in another.  **Assignments that do not compile on `access` or `flip` will receive a grade of 0.**  If you do not have an ENGR account, you can create one at https://teach.engr.oregonstate.edu/.
-
-The assignment is worth 100 total points, broken down as follows:
-
-  * 50 points: Correctly implements a stack using a linked list as the underlying data storage
-    * 5 points: `stack_create()` correctly allocates and initializes a stack
-    * 5 points: `stack_free()` correctly frees the memory allocated to a stack with no memory leaks
-    * 5 points: `stack_isempty()` correctly determines whether a stack is empty
-    * 10 points: `stack_push()` correctly pushes a value onto a stack with O(1) average runtime complexity
-    * 5 points: `stack_top()` correctly returns the top value on a stack with O(1) average runtime complexity
-    * 10 points: `stack_pop()` correctly pops a value from a stack and returns it with O(1) average runtime complexity
-    * 10 points: the stack implementation correctly uses a linked list for its underlying data storage using only the linked list implementation's interface functions (i.e. without accessing the internals of the list implementation)
-
-  * 50 points: Correctly implements a stack using a dynamic array as the underlying data storage
-    * 5 points: `queue_create()` correctly allocates and initializes a queue
-    * 5 points: `queue_free()` correctly frees the memory allocated to a queue with no memory leaks
-    * 5 points: `queue_isempty()` correctly determines whether a queue is empty
-    * 10 points: `queue_enqueue()` correctly enqueues a value into a queue with O(1) average runtime complexity
-    * 5 points: `queue_front()` correctly returns the front value from a queue with O(1) average runtime complexity
-    * 10 points: `queue_dequeue()` correctly dequeues a value from a queue and returns it with O(1) average runtime complexity
-    * 10 points: the queue implementation correctly uses a dynamic array for its underlying data storage using only the dynamic array implementation's interface functions (i.e. without accessing the internals of the dynamic array implementation)
-
-  * Extra credit: up to 10 points for a correct queue-from-stacks implementation, as described above.
