@@ -48,7 +48,7 @@ def edit_distance(s1, s2):
             #If characters are the same get the previous operation
             elif s1[i - 1] == s2[j - 1]:
                 Edit[i][j] = Edit[i - 1][j - 1]
-            #If charcters are not the same, find minimum operation value
+            #If characters are not the same, find minimum operation value
             else:
                 Edit[i][j] = 1 + min(Edit[i][j - 1], Edit[i - 1][j], Edit[i - 1][j - 1])
 
