@@ -1,2 +1,0 @@
-I used gdb to first find the deg fault by back tracing through the code
-then using step and print to track the variable progression

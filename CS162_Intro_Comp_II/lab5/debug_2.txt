@@ -1,5 +1,0 @@
-I first set a break at the factorial function and used step to track the 
-progress of the variables
-
-The error was in the values of the variables and how they were 
-decrementing incorrectly
