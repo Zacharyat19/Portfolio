@@ -1,8 +1,3 @@
-Name: Zach Taylor
-ONID: 933633772
-Section: CS 162-020
-Assignment 5
-
 Description: This program simulates a data structure known as a linked list. These lists are made up of pieces called nodes which contain data like numbers or words.
 Each node is linked to another node into a long chain of data. The program contains a user created linked list and adds numbers to it either at the front or back of the list.
 Then the numbers are sorted into ascending and descending order. Finally, the program counts how many prime numbers are in the list and prints it to the screen.
